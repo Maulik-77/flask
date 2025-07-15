@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Student Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('addstudent') }}">Add Student</a></li>
+            <li><a href="{{ url_for('attendance') }}">Attendance</a></li>
+            <li><a href="{{ url_for('view') }}">VIEW</a></li>
+            <li><a href="{{ url_for('result') }}">resultadd</a></li>
+            <li><a href="{{ url_for('viewresults') }}">viewresult</a></li>
+            <li><a href="{{ url_for('searchresult') }}">Search Result</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>Welcome, Admin!</h1>
+    </div>
+
+    <h2>All Results - Inline Edit/Delete</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Sem</th>
+            <th>Department</th>
+            <th>Python</th>
+            <th>DSA</th>
+            <th>IKS</th>
+            <th>FSD</th>
+            <th>CN</th>
+            <th>OS</th>
+            <th>Total</th>
+            <th>Average</th>
+            <th>Actions</th>
+        </tr>
+
+        {% for row in results %}
+       <tr>
+    <form method="POST" action="{{ url_for('update_result_inline', result_id=row[0]) }}">
+        <td>{{ row[0] }}</td> <!-- id -->
+        <td>{{ row[1] }}</td> <!-- username -->
+        <td><input type="text" name="sem" value="{{ row[10] }}" size="3" required></td>
+        <td><input type="text" name="department" value="{{ row[11] }}" size="8" required></td>
+        <td><input type="number" name="python" value="{{ row[2] }}" size="3" required></td>
+        <td><input type="number" name="dsa" value="{{ row[3] }}" size="3" required></td>
+        <td><input type="number" name="iks" value="{{ row[4] }}" size="3" required></td>
+        <td><input type="number" name="fsd" value="{{ row[5] }}" size="3" required></td>
+        <td><input type="number" name="cn" value="{{ row[6] }}" size="3" required></td>
+        <td><input type="number" name="os" value="{{ row[7] }}" size="3" required></td>
+        <td>{{ row[8] }}</td> <!-- total -->
+        <td>{{ "%.2f"|format(row[9]|float) }}</td> <!-- average -->
+        <td>
+            <button type="submit">Update</button>
+            <a href="{{ url_for('delete_result', result_id=row[0]) }}" onclick="return confirm('Delete this result?')">Delete</a>
+        </td>
+    </form>
+</tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

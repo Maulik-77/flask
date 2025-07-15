@@ -1,0 +1,19 @@
+<html>
+    <head>
+         <meta charset="UTF-8">
+    <title>User Dashboard</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='style1.css')}}">
+    </head>
+    <body>
+           
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('showresult') }}">showresult Result</a></li>
+            
+            <li><a href="{{ url_for('attendancecheck') }}">Attendance</a></li>
+            
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav> 
+    </body>
+</html>

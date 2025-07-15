@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>delete record</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    </head>
+    <body>
+        <table border="1" cellpadding="6">
+            <tr>
+            <th>Name</th><th>Age</th><th>Roll No</th><th>City</th><th>Username</th><th>Password</th><th>delete</th>
+
+        </tr>
+        {% for s in students %}
+        <tr>
+            <td>{{ s[0] }}</td>
+            <td>{{ s[1] }}</td>
+            <td>{{ s[2] }}</td>
+            <td>{{ s[3] }}</td>
+            <td>{{ s[4] }}</td>
+            <td>{{ s[5] }}</td>
+            <td>{{ s[6] }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+    </body>
+</html>

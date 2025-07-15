@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>My Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('showresult') }}">Show Result</a></li>
+            <li><a href="{{ url_for('attendancecheck') }}">Attendance</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h2>Your Result</h2>
+        <table border="1">
+            <tr><th>Subject</th><th>Marks</th></tr>
+            <tr><td>Python</td><td>{{ result[2] }}</td></tr>
+            <tr><td>DSA</td><td>{{ result[3] }}</td></tr>
+            <tr><td>IKS</td><td>{{ result[4] }}</td></tr>
+            <tr><td>FSD</td><td>{{ result[5] }}</td></tr>
+            <tr><td>CN</td><td>{{ result[6] }}</td></tr>
+            <tr><td>OS</td><td>{{ result[7] }}</td></tr>
+            <tr><td><strong>Total</strong></td><td><strong>{{ result[8] }}</strong></td></tr>
+            <tr><td><strong>Average</strong></td><td><strong>{{ result[9] }}</strong></td></tr>
+        </table>
+
+        {% if chart_file %}
+        <div class="chart-section" style="margin-top: 30px;">
+            <h3>Subject-wise Marks Chart</h3>
+            <img src="{{ url_for('static', filename=chart_file) }}" alt="Marks Chart" style="max-width: 600px;">
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

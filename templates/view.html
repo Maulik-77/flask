@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>view Record</title>
+</head>
+<body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+     <nav class="navbar">
+        <ul>
+          
+            <li><a href="{{ url_for('addstudent') }}">Add Student</a></li>
+            <li><a href="{{ url_for('attendance') }}">Attendance</a></li>
+            <li><a href="{{ url_for('view') }}">VIEW</a></li>
+            <li><a href="{{ url_for('result') }}">resultadd</a></li>
+             <li><a href="{{ url_for('viewresults') }}">viewresult</a></li>
+             <li><a href="{{ url_for('searchresult') }}">Search Result</a></li>
+
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>Welcome, Admin!</h1>
+        
+    </div>
+    <h2>Student List</h2>
+    <table border="1" cellpadding="6">
+        <tr>
+            <th>Name</th><th>Age</th><th>Roll No</th><th>City</th><th>Username</th><th>Password</th><th>Delete</th>
+        </tr>
+        {% for s in students %}
+        <tr>
+            <td>{{ s[0] }}</td>
+            <td>{{ s[1] }}</td>
+            <td>{{ s[2] }}</td>
+            <td>{{ s[3] }}</td>
+            <td>{{ s[4] }}</td>
+            <td>{{ s[5] }}</td>
+            <td>
+                <a href="{{ url_for('delete_user', username=s[4]) }}" onclick="return confirm('Are you sure you want to delete {{ s[0] }}?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

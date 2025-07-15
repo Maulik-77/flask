@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+    <!-- basic nav (reuse yours) -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('result') }}">Add Result</a></li>
+            <li><a href="{{ url_for('viewresults') }}">View Results</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <h2>Search Result by Roll Number</h2>
+
+    <!-- search form -->
+    <form method="POST">
+        <label>Roll No:</label>
+        <input type="text" name="rollno" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% endif %}
+
+    {% if result %}
+        <h3>Marks for {{ result[-1] }} (Roll No {{ request.form["rollno"] }})</h3>
+
+        <table border="1">
+            <tr><th>Subject</th><th>Marks</th></tr>
+            <tr><td>Python</td><td>{{ result[2] }}</td></tr>
+            <tr><td>DSA</td><td>{{ result[3] }}</td></tr>
+            <tr><td>IKS</td><td>{{ result[4] }}</td></tr>
+            <tr><td>FSD</td><td>{{ result[5] }}</td></tr>
+            <tr><td>CN</td><td>{{ result[6] }}</td></tr>
+            <tr><td>OS</td><td>{{ result[7] }}</td></tr>
+            <tr><th>Total</th><th>{{ result[8] }}</th></tr>
+            <tr><th>Average</th><th>{{ "%.2f"|format(result[9]|float) }}</th></tr>
+        </table>
+
+        {% if chart_file %}
+            <h3>Visual Analysis</h3>
+            <img src="{{ url_for('static', filename=chart_file) }}" alt="Marks Chart">
+        {% endif %}
+    {% endif %}
+</body>
+</html>

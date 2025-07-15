@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('addstudent') }}">Add Student</a></li>
+            <li><a href="{{ url_for('attendance') }}">Attendance</a></li>
+            <li><a href="{{ url_for('view') }}">VIEW</a></li>
+            <li><a href="{{ url_for('result') }}">Add Result</a></li>
+            <li><a href="{{ url_for('viewresults') }}">View Result</a></li>
+            <li><a href="{{ url_for('searchresult') }}">Search Result</a></li>
+            
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>Add Student Result</h1>
+
+        <form method="POST">
+            <label>Username:</label>
+            <select name="username" required>
+                <option value="">-- Select Student --</option>
+                {% for student in students %}
+                    <option value="{{ student }}">{{ student }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label>Semester:</label>
+            <input type="text" name="sem" required><br><br>
+
+            <label>Department:</label>
+            <input type="text" name="department" required><br><br>
+
+            <label>Python:</label>
+            <input type="number" name="python" min="0" max="100" required><br><br>
+
+            <label>DSA:</label>
+            <input type="number" name="dsa" min="0" max="100" required><br><br>
+
+            <label>IKS:</label>
+            <input type="number" name="iks" min="0" max="100" required><br><br>
+
+            <label>FSD:</label>
+            <input type="number" name="fsd" min="0" max="100" required><br><br>
+
+            <label>CN:</label>
+            <input type="number" name="cn" min="0" max="100" required><br><br>
+
+            <label>OS:</label>
+            <input type="number" name="os" min="0" max="100" required><br><br>
+
+            <button type="submit">Add Result</button>
+        </form>
+    </div>
+</body>
+</html>
