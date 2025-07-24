@@ -352,7 +352,7 @@ def generate_bar_chart(subj, marks, rollno):
 
     # quick color highlight
     for b, m in zip(bars, marks):
-        b.set_color("tab:green" if m >= 40 else "tab:red")
+       
 
     # annotate each bar
     for idx, m in enumerate(marks):
